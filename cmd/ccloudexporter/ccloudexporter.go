@@ -9,7 +9,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/Dabz/ccloudexporter/cmd/internal/collector"
+	"github.com/Vinsser/ccloudexporter/cmd/internal/collector"
 	"github.com/prometheus/client_golang/prometheus"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
 	"net/http"

@@ -1,4 +1,4 @@
-module github.com/Dabz/ccloudexporter
+module github.com/Vinsser/ccloudexporter
 
 go 1.14
 
