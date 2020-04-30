@@ -108,14 +108,19 @@ func BuildQuery(metric MetricDescription, cluster string, timeFrom time.Time, ti
 
 // Send Query to Confluent Cloud API metrics and wait for the response synchronously
 func SendQuery(query Query) (QueryResponse, error) {
-	user, present := os.LookupEnv("CCLOUD_USER")
-	if !present || user == "" {
-		fmt.Print("CCLOUD_USER environment variable has not been specified")
-		os.Exit(1)
-	}
-	password, present := os.LookupEnv("CCLOUD_PASSWORD")
-	if !present || password == "" {
-		fmt.Print("CCLOUD_PASSWORD environment variable has not been specified")
+	// user, present := os.LookupEnv("CCLOUD_USER")
+	// if !present || user == "" {
+	// 	fmt.Print("CCLOUD_USER environment variable has not been specified")
+	// 	os.Exit(1)
+	// }
+	// password, present := os.LookupEnv("CCLOUD_PASSWORD")
+	// if !present || password == "" {
+	// 	fmt.Print("CCLOUD_PASSWORD environment variable has not been specified")
+	// 	os.Exit(1)
+	// }
+	apikey, present := os.LookupEnv("CCLOUD_APIKEY")
+	if !present || apikey == "" {
+		fmt.Print("CCLOUD_APIKEY environment variable has not been specified")
 		os.Exit(1)
 	}
 
@@ -129,7 +134,8 @@ func SendQuery(query Query) (QueryResponse, error) {
 		panic(err)
 	}
 
-	req.SetBasicAuth(user, password)
+	//req.SetBasicAuth(user, password)
+	req.Header.Set("Authorization", "Basic " + apikey)
 	req.Header.Add("Content-Type", "application/json")
 
 	res, err := httpClient.Do(req)
