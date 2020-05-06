@@ -5,7 +5,7 @@ WORKDIR /src
 RUN CGO_ENABLED=0 GOOS=linux go install ./...
 
 # STEP 2 build a small image
-FROM scratch
+FROM alpine
 ADD docker/telemetry-confluent-cloud-chain.pem /etc/ssl/certs/
 COPY --from=builder /go/bin/ccloudexporter /
 
