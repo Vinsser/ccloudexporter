@@ -24,6 +24,13 @@ export CCLOUD_APIKEY=<apikey>
 ./ccloudexporter -cluster lkc-abc123
 ```
 
+### Using docker
+```
+docker run \
+  -e CCLOUD_APIKEY=$CCLOUD_APIKEY \
+  -p 2112:2112
+  docvin55/ccloudexporter:0.1.1 -cluster lkc-abc123
+
 ```
 
 ## How to build
@@ -31,5 +38,3 @@ export CCLOUD_APIKEY=<apikey>
 go get github.com/Vinsser/ccloudexporter/cmd/ccloudexporter
 ```
 
-## Grafana
-A simple Grafana dashboard is provided in [./grafana/](./grafana) folder.
